@@ -1,5 +1,7 @@
 source "https://rubygems.org"
-
+ruby "3.3.9"
+group :development, :test do
+  gem "sqlite3", "~> 2.7"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.3"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
@@ -47,4 +49,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+end
+group :production do
+  gem "pg", ">= 1.5"
 end
