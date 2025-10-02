@@ -1,16 +1,59 @@
-<p style="color: green"><%= notice %></p>
-
-<% content_for :title, "Movies" %>
-
 <h1>Movies</h1>
 
-<div id="movies">
-  <% @movies.each do |movie| %>
-    <%= render movie %>
-    <p>
-      <%= link_to "Show this movie", movie %>
-    </p>
-  <% end %>
+<div class="actions">
+  <%= link_to "New Movie", new_movie_path, class: "btn" %>
 </div>
 
-<%= link_to "New movie", new_movie_path %>
+<table class="movies">
+  <thead>
+    <tr>
+      <% th_class = ->(col) { ["sorted", ("sorted-#{params[:direction] || 'asc'}" if params[:sort] == col)].compact.join(' ') } %>
+
+      <th scope="col"
+          class="<%= th_class.call('title') %>"
+          aria-sort="<%= aria_sort_for('title') %>">
+        <%= sort_link('title', 'Title') %>
+      </th>
+
+      <th scope="col"
+          class="<%= th_class.call('rating') %>"
+          aria-sort="<%= aria_sort_for('rating') %>">
+        <%= sort_link('rating', 'Rating') %>
+      </th>
+
+      <th scope="col"
+          class="<%= th_class.call('release_date') %>"
+          aria-sort="<%= aria_sort_for('release_date') %>">
+        <%= sort_link('release_date', 'Release Date') %>
+      </th>
+
+      <th scope="col" class="nosort">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td><%= movie.title %></td>
+        <td><%= movie.rating %></td>
+        <td><%= movie.release_date&.to_date %></td>
+        <td class="row-actions">
+          <%= link_to "Show", movie %>
+          <%= link_to "Edit", edit_movie_path(movie) %>
+          <%= link_to "Destroy", movie, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <td colspan="4">
+        <strong>Total:</strong> <%= @movies.size %> movie<%= 's' unless @movies.size == 1 %>
+        <% if params[:sort].present? %>
+          — sorted by <em><%= params[:sort].to_s.titleize %></em> (<%= params[:direction] || 'asc' %>)
+        <% end %>
+      </td>
+    </tr>
+  </tfoot>
+</table>

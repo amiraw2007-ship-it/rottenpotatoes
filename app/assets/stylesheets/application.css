@@ -8,3 +8,81 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+/* === Movies index styles === */
+:root {
+    --accent: #204ecf;
+    --accent-soft: #e9f0ff;
+    --accent-strong: #153a9a;
+    --muted: #f7f7f7;
+    --text: #1f2937;
+}
+
+body {
+    color: var(--text);
+    line-height: 1.45;
+}
+
+h1 {
+    margin: 0.5rem 0 1rem;
+}
+
+.actions {
+    margin-bottom: 0.75rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    background: var(--accent);
+}
+
+.btn:hover {
+    background: var(--accent-strong);
+}
+
+table.movies {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #e5e7eb;
+    background: white;
+}
+
+table.movies th,
+table.movies td {
+    padding: 0.55rem 0.6rem;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: top;
+}
+
+table.movies thead th {
+    background: var(--muted);
+    font-weight: 600;
+}
+
+table.movies th.sorted {
+    background: var(--accent-soft);
+}
+
+table.movies th.sorted-asc a,
+table.movies th.sorted-desc a {
+    color: var(--accent-strong);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--accent-strong);
+}
+
+table.movies tfoot td {
+    background: var(--muted);
+}
+
+table.movies .row-actions a {
+    margin-right: 0.6rem;
+}
+
+table.movies th.nosort {
+    color: #6b7280;
+}

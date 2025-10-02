@@ -13,7 +13,10 @@ more_movies = [
   { title: 'Green Book',         rating: 'PG-13', release_date: '16-Nov-2018' },
   { title: 'Parasite',           rating: 'R',     release_date: '30-May-2019' },
   { title: 'Nomadland',          rating: 'R',     release_date: '19-Feb-2021' },
-  { title: 'CODA',               rating: 'PG-13', release_date: '13-Aug-2021' }
+  { title: 'CODA',               rating: 'PG-13', release_date: '13-Aug-2021' },
+  { title: 'Oppenheimer',        rating: 'R',     release_date: '21-Jul-2023'},
+  { title: 'Spider-Man: Into the Spider-Verse', rating: 'PG', release_date: '01-Jun-2018'},
+  { title: 'The Social Network', rating: 'PG-13', release_date: '01-Oct-2010'}
 ]
 more_movies.each { |movie| Movie.create!(movie) }
 
